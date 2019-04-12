@@ -1,2 +1,2 @@
 # estruturaDadosUFF201901
-Exercicio em C da materia de estrutura de dados 1 semestre 2019 Mestrado Computação
+Exercicio em C da materia de estrutura de dados. 01-2019 Mestrado Computação.
