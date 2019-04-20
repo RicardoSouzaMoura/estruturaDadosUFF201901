@@ -9,7 +9,7 @@ protótipo da função de inversão é o seguinte: void inverte (TLSE* l);
 */
 
 #include <stdlib.h>
-#include <stdout.h>
+#include <stdio.h>
 
 typedef struct lista{
     int info;
@@ -40,16 +40,18 @@ int main(void){
     TLSE *p = test11;
     while(p){
         printf("%d", p->info);
+        p = p->prox;
     }
 
-    invert (test11);
+    inverte (test11);
 
     printf("\n Invertida...\n");
-    TLSE *p = test11;
+    p = test11;
     while(p){
         printf("%d", p->info);
+        p = p->prox;
     }
-
+    printf("\n");
 
 }
 
@@ -59,7 +61,7 @@ void inverte (TLSE* l){
     TLSE *ppre;
 
     if (!l || !l->prox){
-        return l;
+        return ;
     }
 
     pini = l;
