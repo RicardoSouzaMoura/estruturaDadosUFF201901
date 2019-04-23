@@ -28,32 +28,33 @@ int main(void){
     test15->info = 5;
 
     test11->prox = test12;
-    test12->prox = test13;
-    test13->prox = test14;
-    test14->prox = test15;
-    test15->prox = NULL;
+    //test12->prox = test13;
+    //test13->prox = test14;
+    //test14->prox = test15;
+    test12->prox = NULL;
 
     TLSE *p = test11;
+    printf("\n printing test11...\n");
     while(p){
         printf("%d", p->info);
         p = p->prox;
     }
 
     p = desloca (test11, 2);
-
-    printf("\n Invertida...\n");
-    while(p){
-        printf("%d", p->info);
-        p = p->prox;
+    TLSE* aux = p;
+    printf("\n Shift to left...\n");
+    while(aux){
+        printf("%d", aux->info);
+        aux = aux->prox;
     }
     printf("\n");
 
-    p = desloca (test11, 1);
-
-    printf("\n Invertida...\n");
-    while(p){
-        printf("%d", p->info);
-        p = p->prox;
+    p = desloca (p, 1);
+    aux = p;
+    printf("\n Shift to Right...\n");
+    while(aux){
+        printf("%d", aux->info);
+        aux = aux->prox;
     }
     printf("\n");
 
@@ -61,4 +62,30 @@ int main(void){
 
 TLSE* desloca (TLSE* l, int n){
 
+    if (!l || !l->prox){
+        return l;
+    }
+
+    TLSE* retorno;
+    TLSE* aux;
+    if (n%2 != 0){
+        aux = l;
+        retorno = l->prox;
+        while(retorno->prox){
+            aux = retorno;
+            retorno = retorno->prox;
+        }
+        retorno->prox = l;
+        aux->prox = NULL;
+    }
+    else{
+        retorno = l->prox;
+        aux = retorno;
+        while(aux->prox){
+            aux = aux->prox;
+        }
+        aux->prox = l;
+        l->prox = NULL;
+    }
+    return retorno;
 }
