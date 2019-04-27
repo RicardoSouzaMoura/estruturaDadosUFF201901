@@ -53,6 +53,13 @@ int main(void){
     }
     printf("\n");
 
+    free(p);
+    free(test11);
+    free(test12);
+    free(test13);
+    free(test14);
+    free(test15);
+
 }
 
 void inverte (TLSE* l){

@@ -63,6 +63,14 @@ int main(void){
         p = p->prox;
     }
     printf("\n");
+
+    free(p);
+    free(novo);
+    free(test11);
+    free(test12);
+    free(test13);
+    free(test14);
+    free(test15);
 }
 
 TAluno *copia (TAluno *l){

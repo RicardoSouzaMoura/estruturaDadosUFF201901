@@ -58,6 +58,14 @@ int main(void){
     }
     printf("\n");
 
+    free(p);
+    free(aux);
+    free(test11);
+    free(test12);
+    free(test13);
+    free(test14);
+    free(test15);
+
 }
 
 TLSE* desloca (TLSE* l, int n){
