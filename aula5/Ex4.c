@@ -74,14 +74,16 @@ int main(void){
 }
 
 TAluno *copia (TAluno *l){
-    TAluno *novo;
-    TAluno *fim;
+    TAluno *novo = NULL;
+    TAluno *fim = NULL;
     TAluno *p = l;
+    printf("percorrendo lista...\n");
     while(p){
        TAluno *novoTemp = (TAluno*)malloc(sizeof(TAluno));
        novoTemp->cr = p->cr;
        novoTemp->mat = p->mat;
        novoTemp->prox = NULL;
+       
        if (!novo){
            novo = novoTemp;
            fim = novo;

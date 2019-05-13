@@ -54,6 +54,15 @@ int main(void){
     }
     printf("\n");
 
+    printf("\n ocorrencias ordenadas...\n");
+    p = test11;
+    while(p){
+        printf("%d", p->info);
+        p = p->prox;
+    }
+    printf("\n");
+
+
     
     free(test11);
     free(test12);

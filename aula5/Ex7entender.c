@@ -12,6 +12,7 @@ typedef struct lista{
 }TLSE;
 
 TLSE* i_p ( TLSE *l);
+void imprime(TLSE *l);
 
 int main(void){
 
@@ -32,29 +33,17 @@ int main(void){
     test14->prox = test15;
     test15->prox = NULL;
 
-    TLSE *p = test11;
     printf("\n lista inteira...\n");
-    while(p){
-        printf("%d", p->info);
-        p = p->prox;
-    }
+    imprime(test11);
 
     TLSE *aux = i_p(test11);
 
     printf("\n ocorrencias ordenadas...\n");
-    p = aux;
-    while(p){
-        printf("%d", p->info);
-        p = p->prox;
-    }
+    imprime(aux);
     printf("\n");
 
     printf("\n ocorrencias ordenadas 2...\n");
-    p = test11;
-    while(p){
-        printf("%d", p->info);
-        p = p->prox;
-    }
+    imprime(test11);
     printf("\n");
 
     
@@ -64,7 +53,7 @@ int main(void){
     free(test14);
     free(test15);
 
-    p = aux;
+    TLSE *p = aux;
     while(p){
         p = p->prox;
         free(aux);
@@ -82,7 +71,15 @@ TLSE* i_p ( TLSE *l){
     TLSE *aux = l;
     l = l->prox;
     aux->prox = l->prox;
-    l->prox = aux; 
+    //l->prox = aux; 
 
     return l;   
+}
+
+void imprime(TLSE *l){
+    TLSE *temp = l;
+    while(temp){
+        printf("%d\n", temp->info);
+        temp = temp->prox;
+    }
 }

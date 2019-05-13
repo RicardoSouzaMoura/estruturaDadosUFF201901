@@ -11,7 +11,8 @@ typedef struct lista{
     struct lista *prox;
 }TLSE;
 
-TLSE* i_p ( TLSE *l);
+void i_p ( TLSE *l);
+void imprime(TLSE *l);
 
 int main(void){
 
@@ -20,11 +21,11 @@ int main(void){
     TLSE* test13 = (TLSE*)malloc(sizeof(TLSE));
     TLSE* test14 = (TLSE*)malloc(sizeof(TLSE));
     TLSE* test15 = (TLSE*)malloc(sizeof(TLSE));
-    test11->info = 3;
-    test12->info = 6;
-    test13->info = 1;
-    test14->info = 8;
-    test15->info = 9;
+    test11->info = 4;
+    test12->info = 0;
+    test13->info = 8;
+    test14->info = 6;
+    test15->info = 1;
 
     test11->prox = test12;
     test12->prox = test13;
@@ -32,29 +33,13 @@ int main(void){
     test14->prox = test15;
     test15->prox = NULL;
 
-    TLSE *p = test11;
     printf("\n lista inteira...\n");
-    while(p){
-        printf("%d", p->info);
-        p = p->prox;
-    }
+    imprime(test11);
 
-    TLSE *aux = i_p(test11);
-
-    printf("\n ocorrencias ordenadas...\n");
-    p = aux;
-    while(p){
-        printf("%d", p->info);
-        p = p->prox;
-    }
-    printf("\n");
+    i_p(test11);
 
     printf("\n ocorrencias ordenadas 2...\n");
-    p = test11;
-    while(p){
-        printf("%d", p->info);
-        p = p->prox;
-    }
+    imprime(test11);
     printf("\n");
 
     
@@ -64,15 +49,47 @@ int main(void){
     free(test14);
     free(test15);
 
+    printf("\n");
+    
+
 }
 
-TLSE* i_p ( TLSE *l){
+void i_p ( TLSE *l){
     if (!l || !l->prox){
-        return l;
+        return;
     }
-    int aux = l->prox->info;
-    l->prox->info = l->info;
-    l->info = aux;
+    TLSE *par = l;
+    while(par){
+        while(par && par->info % 2 != 0){
+            par = par->prox;
+        }
+        if (!par){
+            return;
+        }
+        TLSE *impar = par;
+        while(impar && impar->info % 2 == 0){
+            impar = impar->prox;
+        }
+        if (!impar){
+            return;
+        }
 
-    return l;   
+        int info_v = par->info;
+        TLSE *aux = par;
+        while(aux != impar){
+            aux = aux->prox;
+            int info_t = aux->info;
+            aux->info = info_v;
+            info_v = info_t;
+        }
+        par->info = info_v;
+    } 
+}
+
+void imprime(TLSE *l){
+    TLSE *temp = l;
+    while(temp){
+        printf("%d\n", temp->info);
+        temp = temp->prox;
+    }
 }
